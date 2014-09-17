@@ -1,0 +1,22 @@
+sudo: false
+
+language: ruby
+
+rvm:
+  – 2.0.0
+  – 2.1.0
+  - ruby-head
+
+env:
+  global:
+    - FOO=bar
+  matrix:
+    - RAKE_TASK=echo
+    - RAKE_TASK=foo
+
+matrix:
+  allow_failures:
+    - rvm: ruby-head
+
+script:
+  - buncle exec rake $RAKE_TASK
