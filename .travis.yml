@@ -17,4 +17,4 @@ matrix:
     - rvm: ruby-head
 
 script:
-  - buncle exec rake $RAKE_TASK
+  - bundle exec rake $RAKE_TASK
