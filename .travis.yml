@@ -1,14 +1,14 @@
 language: ruby
 
 rvm:
-  - 2.0.0
-  - 2.1.0
-  - 2.1.5
-  - 2.2.0
+  - 2.0
+  - 2.1
+  - 2.2
   - ruby-head
 
-allow_failures:
-  - rvm: ruby-head
+matrix:
+  allow_failures:
+    - rvm: ruby-head
 
 script:
   - bundle exec rspec
