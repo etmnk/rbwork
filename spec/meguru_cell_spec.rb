@@ -1,7 +1,7 @@
 # coding: utf-8
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-TEST_DATA = [
+MEGURU_CELL_TEST_DATA = [
   [ "YokoHamarb", "acdfp" ],
   [ "Ruby", "twx" ],
   [ "ruby", "nst" ],
@@ -46,13 +46,13 @@ TEST_DATA = [
   [ "HLNsiNMnbAnn", "abdkm" ],
 ]
 
-TEST_DATA.each do |td|
+MEGURU_CELL_TEST_DATA.each do |td|
   describe "MeguruCell #{td[0]}" do
     let(:cell) { MeguruCell.new }
 
     before do
       cell.check_str(td[0])
     end
-    it { cell.arround_value.last.sort.join == td[1] }
+    it_is_asserted_by { cell.arround_value.last.sort.join == td[1] }
   end
 end

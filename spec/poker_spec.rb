@@ -1,7 +1,7 @@
 # coding: utf-8
 require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 
-TEST_DATA = [
+POKER_TEST_DATA = [
   ["D3C3C10D10S3","FH"],
   ["S8D8H8S10CJ","3K"],
   ["S8D10HJS10CJ","2P"],
@@ -9,7 +9,7 @@ TEST_DATA = [
   ["S8H7D2C3C4","--"],
 ]
 
-TEST_DATA.each do |td|
+POKER_TEST_DATA.each do |td|
   describe "Poker #{td[0]}" do
     let(:poker) { Poker.new }
 
@@ -17,6 +17,6 @@ TEST_DATA.each do |td|
       poker.get_card(td[0])
     end
 
-    it { poker.show_hand == td[1] }
+    it_is_asserted_by { poker.show_hand == td[1] }
   end
 end

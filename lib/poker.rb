@@ -26,17 +26,17 @@ class Poker
     num_group = num_array.group_by{ |a| a }.values.map(&:size).sort
 
     if num_group == [1,4]
-      p @hands[0]
+      @hands[0]
     elsif num_group == [2,3]
-      p @hands[1]
+      @hands[1]
     elsif num_group == [1,1,3]
-      p @hands[2]
+      @hands[2]
     elsif num_group == [1,2,2]
-      p @hands[3]
+      @hands[3]
     elsif num_group == [1,1,1,2]
-      p @hands[4]
+      @hands[4]
     else
-      p @hands[5]
+      @hands[5]
     end
   end
 end
