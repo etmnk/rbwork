@@ -2,6 +2,7 @@
 # http://nabetani.sakura.ne.jp/hena/ord3ynode/
 
 require 'rspec-power_assert'
+require 'pp'
 
 class YNode
   def initialize(str)
@@ -31,12 +32,25 @@ class YNode
       %w(F E D B),
       %w(F D A E),
     ]
+    @node_h = node_hash(@node)
     #h = { 'BA' => {'l'=> 'D','r' => 'C'}}
   end
 
+  def node_hash(node)
+    node.each_with_object({}) do |n, h|
+      h["#{n[0]}#{n[1]}"] = {
+        "l" => n[2],
+        "r" => n[3]
+      }
+    end
+  end
+
   def get_next
-    p @str
-    p @node['A']['l']
+    #pp @str
+    #pp @node_h
+    @str.each do |s|
+
+    end
   end
 end
 
