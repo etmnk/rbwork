@@ -5,18 +5,18 @@ require 'rspec-power_assert'
 require 'pp'
 
 class YNode
+  attr_reader :route
   def initialize(str)
-    @str = str.split(//)
+    @str = str
     @route = []
     @back = 'B'
-    @route << @back
     @current = 'A'
 
     @node = [
       %w(B A D C),
       %w(B C A F),
       %w(B E F D),
-      %w(A D B F),
+      %w(A D E F),
       %w(A C F B),
       %w(A B C E),
       %w(D F E C),
@@ -47,13 +47,43 @@ class YNode
 
   def get_next
     #pp @str
-    #pp @node_h
-    @str.each do |s|
-
+    @str.each_char do |s|
+      if s == 'b'
+        tmp = @current
+        @current = @back
+        @back = tmp
+        @route << @back
+      else
+        next_node = @node_h["#{@back}#{@current}"]["#{s}"]
+        @back = @current
+        @current = next_node
+        @route << @back
+      end
     end
+    @route << @current
+    #pp @route.join
   end
 end
 
-str = "l"
+#str = "l"
+str = "rrrrbllrlrbrbrr"
+assert = "ACBACABCFDEDADFC"
 node = YNode.new(str)
 node.get_next
+if node.route.join == assert
+  pp "OK"
+else
+  pp "NG"
+end
+
+__END__
+YNODE_TEST_DATA = [
+  ["b", "AB"],
+  ["l", "AD"],
+  ["r", "AC"],
+  ["bbb", "ABAB"],
+  ["rrr", "ACBA"],
+  ["blrllrlbllrrbr", "ABCFDABCBEFDEDA"],
+  ["lbrbbrllllrblrr", "ADABABEFCBEDEBCF"],
+  ["rrrrbllrlrbrbrr", "ACBACABCFDEDADFC"],
+]
