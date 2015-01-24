@@ -61,29 +61,14 @@ class YNode
       end
     end
     @route << @current
+    @route.join
     #pp @route.join
   end
 end
 
 #str = "l"
-str = "rrrrbllrlrbrbrr"
-assert = "ACBACABCFDEDADFC"
-node = YNode.new(str)
-node.get_next
-if node.route.join == assert
-  pp "OK"
-else
-  pp "NG"
-end
+#str = "rrrrbllrlrbrbrr"
+#assert = "ACBACABCFDEDADFC"
+#node = YNode.new(str)
+#node.get_next
 
-__END__
-YNODE_TEST_DATA = [
-  ["b", "AB"],
-  ["l", "AD"],
-  ["r", "AC"],
-  ["bbb", "ABAB"],
-  ["rrr", "ACBA"],
-  ["blrllrlbllrrbr", "ABCFDABCBEFDEDA"],
-  ["lbrbbrllllrblrr", "ADABABEFCBEDEBCF"],
-  ["rrrrbllrlrbrbrr", "ACBACABCFDEDADFC"],
-]
