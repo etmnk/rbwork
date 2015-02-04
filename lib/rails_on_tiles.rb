@@ -57,7 +57,7 @@ class RailsOnTiles
 end
 
 #rails = "101221102"
-rails = "000000000"
-rot = RailsOnTiles.new(rails)
-rot.process(1,0)
-p rot.pass.join
+#rails = "000000000"
+#rot = RailsOnTiles.new(rails)
+#rot.process(1,0)
+#p rot.pass.join
