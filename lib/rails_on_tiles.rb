@@ -11,6 +11,8 @@ class RailsOnTiles
     @tiles = [*'A'..'I'].each_slice(3).to_a
     @pass = []
     @cur = :down
+    @next_posit = {up: [0,-1], right: [1,0], down: [0,1], left: [-1,0]}
+    @next_cur = {down: [:right, :left], right: [:down, :up], up: [:left, :right], left: [:up, :down]}
   end
 
   def process(x,y)
@@ -19,39 +21,12 @@ class RailsOnTiles
 
     @pass << @tiles[y][x]
     change_rail(@rails[y][x])
-    if @cur == :up
-      process(x,y-1)
-    elsif @cur == :right
-      process(x+1,y)
-    elsif @cur == :down
-      process(x,y+1)
-    elsif @cur == :left
-      process(x-1,y)
-    end
+    next_x,next_y = @next_posit[@cur]
+    process(x + next_x, y + next_y)
   end
 
   def change_rail(n)
-    if n == "1"
-      if @cur == :down
-        @cur = :right
-      elsif @cur == :right
-        @cur = :down
-      elsif @cur == :up
-        @cur = :left
-      elsif @cur == :left
-        @cur = :up
-      end
-    elsif n == "2"
-      if @cur == :down
-        @cur = :left
-      elsif @cur == :right
-        @cur = :up
-      elsif @cur == :up
-        @cur = :right
-      elsif @cur == :left
-        @cur = :down
-      end
-    end
+    @cur = @next_cur[@cur][n.to_i - 1]
   end
 
 end
