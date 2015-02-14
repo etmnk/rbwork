@@ -6,16 +6,23 @@ require 'pp'
 class Relationship
   attr_reader :aidagara, :family
 
-  def initialize(relation)
+  def initialize
     @family_t = (2..40).each_slice(3).to_a
     @family = @family_t.each_with_object({}).with_index(1) do |(t, obj), i|
       obj[i] = t
     end
-    @aidagara = nil
   end
 
-  def process
+  def process(relation)
+    from, to = relation.split("->").map(&:to_i)
+    check_relation(from,to)
+  end
 
+  def check_relation(from, to)
+    if from == to
+      return "me"
+    end
+      
   end
 
   def level(num)
@@ -34,5 +41,7 @@ class Relationship
 end
 
 relation = "5->2"
-relationship = Relationship.new(relation)
+relationship = Relationship.new
 pp relationship.family
+#aidagara = relationship.process(relation)
+#pp aidagara
