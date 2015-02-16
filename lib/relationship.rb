@@ -21,6 +21,20 @@ class Relationship
   def check_relation(from, to)
     if from == to
       return "me"
+    elsif @family[to].find {|item| item == from}
+      return "mo"
+    elsif @family[from].find {|item| item == to}
+      return "da"
+    elsif (Math.abs(from - to) <= 2) && Math.abs((from + to / 2) - from) == 1
+      return "si"
+    elsif level(from) - 1 == level(to)
+      return "au"
+    elsif level(from) == level(to) + 1
+      return "au"
+    elsif level(from) == level(to)
+      return "co"
+    else
+      return "-"
     end
       
   end
@@ -42,6 +56,6 @@ end
 
 relation = "5->2"
 relationship = Relationship.new
-pp relationship.family
-#aidagara = relationship.process(relation)
-#pp aidagara
+#pp relationship.family
+aidagara = relationship.process(relation)
+pp aidagara
